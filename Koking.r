@@ -1,6 +1,7 @@
 # set up design
 library(FrF2)
 ?FrF2
+require(MASS)
 
 # set.seed(123) - if you want to be able to reproduce this
 # setting up the 2^4 experiment in standard run order (no randomization)
