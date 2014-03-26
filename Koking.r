@@ -47,62 +47,29 @@ lenth <- function(lmobj,alpha=0.05)
   return(list("PSE"=PSE,"Signlimit"=signlimit,"Number of sign"=sum(abseffects>signlimit)))
 }
 
-lenthres <- lenth(lm4)
-lenthres
-# see that factors with effects larger than lenthres$Signlimit should be assumed
-# to have effect different from zero
-effects
-abs(effects)>lenthres$Signlimit
-# here A, B, C, D and  BD
+# Significant Effect for lenth's Method
+lenthsign <- lenth(lm4)
+lenthsign
 names(effects) <- c("Intercept","A","B","C","D","AB","AC","AD","BC","BD","CD","ABC","ABD","ACD","BCD","ABCD")
 
-
-# How to make a relatively ok Paretoplot for the effects
+# Pareto Plot
 barplot(sort(abs(effects[-1]),decreasing=FALSE),las=1,horiz=TRUE,cex.names=1.0)
-abline(v=lenthres$Signlimit,col=2,lwd=2)
-#dev.copy2pdf(file="barplotTread.pdf")
+abline(v=lenthsign$Signlimit,col=2,lwd=2)
 
-# and main and interaction effects plots
-MEPlot(lm4)
-IAPlot(lm4)
-
-# we then go for only modelling main effects and first order interactions
-#newy <- 1/y
-
+# Model with third-, and fourth-order interactions removed
 lm2 <- lm(y~(.)^2,data=plan)
 summary(lm2)
 effects <- 2*lm2$coeff
 effects
 names(lm2)
-anova(lm2)
+ano <- anova(lm2)
 
-# model check by residual plots
-# 1 fitted vs studentized residuals
-rres <- rstudent(lm2)
-plot(lm2$fitted,rres)
+plot(lm2$fitted,rstudent(lm2),pch=20)
+qqnorm(rstudent(lm2),pch=20)
+qqline(rstudent(lm2))
 
-# 2 if 1 strange, each x vs. studentized residuals
-# not seem to be needed here
+# Finding s by using Mean Square Residuals from anova
+s = sqrt(ano[11,3])
 
-# 3 normality of residuals
-qqnorm(rres)
-qqline(rres)
-library(nortest)
-ad.test(rstudent(lm2))
-# looks pretty ok
-
-# 4 observation order vs. time?
-# not here?
-
-#What if? What if the residuals looked strange? Need transformation of y?
-boxcox(lm2,plotit=TRUE)
-# lambda=1 inside 95% CI, so dont need transformation.
-# if not lambda=1 inside the CI maybe you need to transform the data and
-# redo the analyses
-# lambda=0 means to need newy=log(y),
-# lambda=-1 means you need newy=1/y
-# lambda=0.5 newy=sqrt(y)
-
-# presentation and interpretation of results
-MEPlot(lm2)
-IAPlot(lm2)
+# Constructing s_effect
+s_effect = sqrt(4*s^2/)
