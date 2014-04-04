@@ -40,7 +40,7 @@ From the main effects plot, figure \ref{fig:mainEff}, it is easy to see that the
     \label{fig:mainEff}
 \end{figure}
 
-The interaction effect plot, figure \ref{fig:interaction} does not bring forth any new information. The lines are mostly parallel, except  for the interaction between $B$ and $C$.
+The interaction effect plot, figure \ref{fig:interaction} does not bring forth any new information. The lines are mostly parallel, except  for the interaction between $B$ and $C$, but it's still only a minor interaction.
 
 \begin{figure}[H]
     \centering
@@ -49,7 +49,7 @@ The interaction effect plot, figure \ref{fig:interaction} does not bring forth a
     \label{fig:interaction}
 \end{figure}
 
-On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the cooks distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by \ref{Cook} that this is not the case for our model.
+On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the Cook's Distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by \ref{Cook} that this is not the case for our model.
 
 \begin{table}[!htbp] \centering 
   \caption{The Cook's distance}
@@ -65,7 +65,7 @@ On the analysis of influence, we used the Cook's Distance as an estimate. In our
 \end{tabular} 
 \end{table} 
 
-By looking at the residual plot, figure \ref{fig:residual}, a strange pattern emerges. Although it looks like the points are spread out on the y-axis, they are centered in two areas at the x-axis.
+By looking at the residual plot, figure \ref{fig:residual}, a strange pattern emerges. Although it looks like the points are spread out on the vertical axis, they are centered in two areas at the horisontal axis, i.e. they are clustered.
 
 \begin{figure}[H]
     \centering
@@ -74,7 +74,7 @@ By looking at the residual plot, figure \ref{fig:residual}, a strange pattern em
     \label{fig:residual}
 \end{figure}
 
-The Anderson-Darling test is a well know test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
+The Anderson-Darling test is a well known test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
 
 On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis.
 
@@ -87,12 +87,12 @@ To further investigate the distribution of the errors, a QQ-plot was made, figur
     \label{fig:qqPlot}
 \end{figure}
 
-Because the residual plot looked a bit strange, the BoxCox-test is performed to see if y needs a transformation. But because $\lambda = 1$ is inside the 95 $\%$ confidence interval, no such transformation is required. 
+Because the residual plot looked a bit strange, the Box-Cox-test is performed to see if y needs a transformation. But because $\lambda = 1$ is inside the 95 $\%$ confidence interval, no such transformation is required. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/boxCox.pdf}
-    \caption{BoxCox-plot}
+    \caption{Box-Cox-plot}
     \label{fig:boxCox}
 \end{figure}
 
