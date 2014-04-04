@@ -49,6 +49,18 @@ The interaction effect plot, figure \ref{fig:interaction} does not bring forth a
     \label{fig:interaction}
 \end{figure}
 
+Since Lenth's test is quite conservative regarding choosing significant effects, we tried using another method for finding significant effects. The method is based on assuming that higher order interactions are zero, and thereby changing the model. We used a model where we assumed third- and fourth-order interactions to be zero.
+
+By assuming higher order interactions (3 and 4) to be zero, we have enough degrees of freedom for an estimator for the variance of the significant effects. We have that $S_{effect}^ 2$ is the mean of the sum of the squares of those effects that we think are zero:
+\begin{equation}
+S_{effect} = \sqrt{\frac{\widehat{ABC}^2 + \widehat{ABD}^2 + \widehat{ACD}^ 2 + \widehat{BCD}^2 + \widehat{ABCD}^2}{5}}\\
+\end{equation}
+The number of degrees of freedom is 5. Using a t-test with $5\%$ significance, we get:
+\begin{equation}
+\text{Cut-Off} = t_{0.025,5}S_{effect} = 28.05\\ 
+\end{equation}
+That is, only the effects greater than this value are considered significant. By we can see that only $\hat{B}$ is considered significant.
+
 On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the cooks distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by \ref{Cook} that this is not the case for our model.
 
 \begin{table}[!htbp] \centering 
@@ -70,7 +82,7 @@ By looking at the residual plot, figure \ref{fig:residual}, a strange pattern em
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/residualPlot.pdf}
-    \caption{Awesome Image}
+    \caption{Residual plot for the reduced model}
     \label{fig:residual}
 \end{figure}
 
@@ -93,7 +105,5 @@ Because the residual plot looked a bit strange, the BoxCox-test is performed to 
     \caption{Awesome Image}
     \label{fig:boxCox}
 \end{figure}
-
-
 
 
