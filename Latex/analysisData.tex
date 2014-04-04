@@ -23,6 +23,7 @@ B1:C1 & B1:D1 & C1:D1 & A1:B1:C1 & A1:B1:D1 & A1:C1:D1 & B1:C1:D1 & A1:B1:C1:D1\
 \end{tabular} 
 \end{table}
 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/paretoPlot.pdf}
@@ -44,26 +45,44 @@ The interaction effect plot, figure \ref{fig:interaction} does not bring forth a
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/interactionPlot4factors.pdf}
-    \caption{Awesome Image}
+    \caption{Interaction effects}
     \label{fig:interaction}
 \end{figure}
+
+On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the cooks distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by \ref{Cook} that this is not the case for our model.
+
+\begin{table}[!htbp] \centering 
+  \caption{The Cook's distance}
+  \label{Cook} 
+\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+0.715 & 0.069 & 0.133 & 0.047 & 0.786 & 0.093 & 0.164 & 0.031\\  \hline
+9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+0.216 & 0.014 & 0.0003 & 0.358 & 0.256 & 0.006 & 0.001 & 0.310 \\
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 
 By looking at the residual plot, figure \ref{fig:residual}, a strange pattern emerges. Although it looks like the points are spread out on the y-axis, they are centered in two areas at the x-axis.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/residualPlot.pdf}
-    \caption{Awesome Image}
+    \caption{Residual plot}
     \label{fig:residual}
 \end{figure}
 
-We assume that the errors are normally distributed and do a QQ-plot, figure \ref{fig:qqPlot}. This shows that it is indeed normally distributed. All the measurements follow the variables, except for two points.
+The Anderson-Darling test is a well know test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
+
+To further investigate the distribution of the errors, a QQ-plot was made, figure \ref{fig:qqPlot}. This shows that it is normally distributed. All the measurements follow the line, except for two points.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/qqPlot.pdf}
-    \caption{Awesome Image}
-    \label{fig:awesome_image}
+    \caption{QQ-plot}
+    \label{fig:qqPlot}
 \end{figure}
 
 Because the residual plot looked a bit strange, the BoxCox-test is performed to see if y needs a transformation. But because $\lambda = 1$ is inside the 95 $\%$ confidence interval, no such transformation is required. 
@@ -71,13 +90,13 @@ Because the residual plot looked a bit strange, the BoxCox-test is performed to 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{PDF/boxCox.pdf}
-    \caption{Awesome Image}
+    \caption{BoxCox-plot}
     \label{fig:boxCox}
 \end{figure}
 
 The Anderson-Darling test is a well know test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
 
-On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliners, this test is a good indication of points that merit closer examination in our analysis.
+On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis.
 
 \begin{table}[!htbp] \centering 
   \caption{} 
@@ -91,4 +110,20 @@ On the analysis of influence, we used the Cook's Distance as an estimate. In our
 0.216 & 0.014 & 0.0003 & 0.358 & 0.256 & 0.006 & 0.001 & 0.310 \\
 \hline \\[-1.8ex] 
 \end{tabular} 
-\end{table} 
+\end{table}
+
+
+If the interaction 3-way and 4-way interaction effects are removed, the effects become,
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+(Intercept) & A1 & B1 & C1 & D1 & A1:B1 \\ 
+282.125 & -1.125 & -99.875 & 12.875 & 4.375 & -3.125 \\ \hline
+A1:C1 & A1:D1 & B1:C1 & B1:D1 & C1:D1 &\\
+2.625 & -3.875 & -13.125 & -6.625 & 2.125 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}  
