@@ -112,4 +112,3 @@ boxcox(lm2,plotit=TRUE)
 # presentation and interpretation of results
 MEPlot(lm2)
 IAPlot(lm2)
-plot(rres)
