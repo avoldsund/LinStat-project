@@ -23,13 +23,13 @@ B1:C1 & B1:D1 & C1:D1 & A1:B1:C1 & A1:B1:D1 & A1:C1:D1 & B1:C1:D1 & A1:B1:C1:D1\
 \end{tabular} 
 \end{table}
 
-The Anderson-Darling test is a well know test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
+The Anderson-Darling test is a well know test for normality. For our model with third- and fourth-order interaction effects assumed to be zero, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
 
-On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliners, this test is a good indication of points that merit closer examination in our analysis.
+On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the cooks distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by \ref{Cook} that this is not the case for our model.
 
 \begin{table}[!htbp] \centering 
-  \caption{} 
-  \label{} 
+  \caption{The Cook's distance}
+  \label{Cook} 
 \begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
