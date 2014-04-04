@@ -8,6 +8,7 @@ library(MASS)
 plan <- FrF2(nruns=16,nfactors=4,randomize=FALSE)
 plan
 
+stargazer(plan)
 # this is only done because I have entered the data in standard order,
 # when the DOE experiment is done then "randomize=TRUE" should be chosen!!
 
@@ -20,6 +21,10 @@ y
 plan <- add.response(plan,y)
 plan
 
+install.packages("stargazer")
+library(stargazer)
+
+stargazer(plan, summary=FALSE)
 # here
 # A=backpack
 # B=time
@@ -33,6 +38,7 @@ effects <- 2*lm4$coeff
 effects
 names(lm4)
 anova(lm4)
+stargazer(effects)
 
 # to make sure, I have implemented Lenths method as a function
 lenth <- function(lmobj,alpha=0.05)
@@ -58,7 +64,7 @@ names(effects) <- c("Intercept","A","B","C","D","AB","AC","AD","BC","BD","CD","A
 
 
 # How to make a relatively ok Paretoplot for the effects
-barplot(sort(abs(effects[-1]),decreasing=FALSE),las=1,horiz=TRUE,cex.names=1.0)
+barplot(sort(abs(effects[-1]),decreasing=FALSE),las=1,horiz=TRUE,cex.names=1.0, main = 'Paretoplot for the effects')
 abline(v=lenthres$Signlimit,col=2,lwd=2)
 #dev.copy2pdf(file="barplotTread.pdf")
 
@@ -79,7 +85,7 @@ anova(lm2)
 # model check by residual plots
 # 1 fitted vs studentized residuals
 rres <- rstudent(lm2)
-plot(lm2$fitted,rres)
+plot(lm2$fitted,rres, main = 'Residual plot')
 
 # 2 if 1 strange, each x vs. studentized residuals
 # not seem to be needed here
@@ -106,3 +112,4 @@ boxcox(lm2,plotit=TRUE)
 # presentation and interpretation of results
 MEPlot(lm2)
 IAPlot(lm2)
+plot(rres)
