@@ -18,7 +18,25 @@ $282.125$ & $$-$1.125$ & $$-$99.875$ & $12.875$ & $4.375$ & $$-$3.125$ & $2.625$
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
 B1:C1 & B1:D1 & C1:D1 & A1:B1:C1 & A1:B1:D1 & A1:C1:D1 & B1:C1:D1 & A1:B1:C1:D1\\ 
-$$-$13.125$ & $$-$6.625$ & $2.125$ & $$-$10.375$ & $1.125$ & $$-$13.125$ & $$-$15.875$ & $7.875$\\ 
+-13.125 & -6.625 & 2.125 & -10.375 & 1.125 & -13.125 & -15.875 & 7.875\\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+The Anderson-Darling test is a well know test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
+
+On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliners, this test is a good indication of points that merit closer examination in our analysis.
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+0.715 & 0.069 & 0.133 & 0.047 & 0.786 & 0.093 & 0.164 & 0.031\\  \hline
+9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+0.216 & 0.014 & 0.0003 & 0.358 & 0.256 & 0.006 & 0.001 & 0.310 \\
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
