@@ -75,6 +75,7 @@ IAPlot(lm4)
 # we then go for only modelling main effects and first order interactions
 #newy <- 1/y
 
+
 lm2 <- lm(y~(.)^2,data=plan)
 summary(lm2)
 effects <- 2*lm2$coeff

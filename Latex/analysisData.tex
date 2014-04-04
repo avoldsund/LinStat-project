@@ -30,7 +30,7 @@ B1:C1 & B1:D1 & C1:D1 & A1:B1:C1 & A1:B1:D1 & A1:C1:D1 & B1:C1:D1 & A1:B1:C1:D1\
     \caption{Pareto plot}
     \label{fig:pareto}
 \end{figure}
-%
+
 From the main effects plot, figure \ref{fig:mainEff}, it is easy to see that the heating time for the low level is a lot longer than the heating time for the high level. The other three factors show a very small change when going from low to high level.
 
 \begin{figure}[H]
@@ -49,7 +49,20 @@ The interaction effect plot, figure \ref{fig:interaction} does not bring forth a
     \label{fig:interaction}
 \end{figure}
 
-On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the Cook's Distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by \ref{Cook} that this is not the case for our model.
+Since Lenth's test is quite conservative regarding choosing significant effects, we tried using another method for finding significant effects. The method is based on assuming that higher order interactions are zero, and thereby changing the model. We used a model where we assumed third- and fourth-order interactions to be zero.
+
+By assuming higher order interactions (3 and 4) to be zero, we have enough degrees of freedom for an estimator for the variance of the significant effects. We have that $S_{effect}^ 2$ is the mean of the sum of the squares of those effects that we think are zero:
+\begin{equation}
+S_{effect} = \sqrt{\frac{\widehat{ABC}^2 + \widehat{ABD}^2 + \widehat{ACD}^ 2 + \widehat{BCD}^2 + \widehat{ABCD}^2}{5}}\\
+\end{equation}
+The number of degrees of freedom is 5. Using a t-test with $5\%$ significance, we get:
+\begin{equation}
+\text{Cut-Off} = t_{0.025,5}S_{effect} = 28.05\\ 
+\end{equation}
+That is, only the effects greater than this value are considered significant. By looking at table \ref{effWO34} we can see that only $\hat{B}$ is considered significant.
+ 
+
+On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis. Table \ref{Cook} shows the Cook's Distance for the model where third and fourth-order interaction effects are assumed to be zero. An operational guideline for the D-value is that measurements where $D>1$ should be looked upon more closely. It is seen by table \ref{Cook} that this is not the case for our model.
 
 \begin{table}[!htbp] \centering 
   \caption{The Cook's distance}
@@ -76,8 +89,6 @@ By looking at the residual plot, figure \ref{fig:residual}, a strange pattern em
 
 The Anderson-Darling test is a well known test for normality. For our model with third- and fourth-order interactions removed, the test resulted in a p-value of $0.2646$. Since $p > 0.05$, this p-value supports normality of the data.
 
-On the analysis of influence, we used the Cook's Distance as an estimate. In our search for outliers, this test is a good indication of points that merit closer examination in our analysis.
-
 To further investigate the distribution of the errors, a QQ-plot was made, figure \ref{fig:qqPlot}. This shows that it is normally distributed. All the measurements follow the line, except for two points.
 
 \begin{figure}[H]
@@ -96,25 +107,10 @@ Because the residual plot looked a bit strange, the Box-Cox-test is performed to
     \label{fig:boxCox}
 \end{figure}
 
-\begin{table}[!htbp] \centering 
-  \caption{} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}} cccccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
-0.715 & 0.069 & 0.133 & 0.047 & 0.786 & 0.093 & 0.164 & 0.031\\  \hline
-9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
-0.216 & 0.014 & 0.0003 & 0.358 & 0.256 & 0.006 & 0.001 & 0.310 \\
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
-
-
 If the interaction 3-way and 4-way interaction effects are removed, the effects become,
 \begin{table}[!htbp] \centering 
-  \caption{} 
-  \label{} 
+  \caption{Effect withouth 3-way and 4-way interactions} 
+  \label{effWO34} 
 \begin{tabular}{@{\extracolsep{5pt}} ccccccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -124,4 +120,4 @@ A1:C1 & A1:D1 & B1:C1 & B1:D1 & C1:D1 &\\
 2.625 & -3.875 & -13.125 & -6.625 & 2.125 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
-\end{table}  
+\end{table}
